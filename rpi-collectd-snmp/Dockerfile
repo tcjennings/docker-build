@@ -17,7 +17,7 @@ RUN apt-get update \
  && rm -f /etc/snmp/snmp.conf \
  && touch /etc/snmp/snmp.conf
 
-ADD docker-entrypoint.sh /docker-entrypoint.sh
+COPY docker-entrypoint.sh /docker-entrypoint.sh
 
 VOLUME /etc/collectd/collectd.conf.d
 
