@@ -10,12 +10,12 @@ LABEL org.label-schema.schema-version="1.0" \
       com.tobyjennings.architecture="arm6hf" 
 
 RUN apt-get update \
- && apt-get upgrade -y\
+ && apt-get upgrade -y \
  && apt-get install -y libfontconfig wget \
  && wget -O /tmp/grafana.deb https://github.com/tcjennings/raspberrypi-packages/raw/master/grafana/v4.0.2/grafana_4.0.2-1481430694_armhf.deb \
  && dpkg -i /tmp/grafana.deb \
  && apt-get clean \
- && rm -rf /tmp/* \
+ && rm -rf /tmp/* 
 
 VOLUME /var/lib/grafana
 VOLUME /var/log/grafana
