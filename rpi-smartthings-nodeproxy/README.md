@@ -14,6 +14,8 @@ sudo apt-get update
 sudo apt-get install docker-engine
 ```
 
+Optionally, you can add the `pi` user to the `docker` group and avoid having to `sudo docker` commands.
+
 ## Install Docker Compose
 
 On the Raspberry Pi running Raspian,

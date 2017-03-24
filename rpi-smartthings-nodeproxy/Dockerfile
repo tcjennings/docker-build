@@ -11,7 +11,7 @@ ENV PYTHON=/usr/bin/python2.7
 
 RUN apt-get install python2.7 build-essential \
  && mkdir -p /stnp/plugins \
- &&  wget -O - https://github.com/redloro/smartthings/tarball/master \
+ && wget -O - https://github.com/redloro/smartthings/tarball/master \
   | tar -xzvf - --wildcards --strip-components=2 -C /stnp/ redloro-smartthings-*/smartthings-nodeproxy/ \
  && cd /stnp \
  && rm -f restart.me smartthings-nodeproxy.service \
