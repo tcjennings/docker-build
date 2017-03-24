@@ -9,7 +9,7 @@ Edit the `docker-compose.yml` file and update as necessary. Repeat the service b
 On the Raspberry Pi running Raspian,
 
 ```
-sudo apt-get install python2.7 python-pip2.8
+sudo apt-get install python2.7 python-pip2.7
 sudo pip install docker-compose
 ```
 
