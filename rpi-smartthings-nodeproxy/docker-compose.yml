@@ -1,0 +1,21 @@
+version: '2'
+services:
+  #Rename, add, or change the name of the service as necessary
+  sntp:
+    build: .
+    image: "tcjennings/rpi-smartthings-nodeproxy:latest"
+    ports:
+      - "8080:8080"
+    environment:
+      #space-separated list of plugin file names without the .js extension
+      #Best practice is probably one plugin per container; run multiple containers for
+      # multiple plugins.
+      - ENABLED_PLUGINS=generic
+    volumes:
+      #Either edit the config.json in current directory or supply path to the correct file
+      - ./config.json:/stnp/config.json
+    devices:
+      #Replace 'ttyAMA0' with the correct device name on your host.
+      - "/dev/ttyAMA0:/dev/ttyUSB0"
+    restart: always
+
