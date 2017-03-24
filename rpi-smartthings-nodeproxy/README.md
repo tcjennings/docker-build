@@ -4,12 +4,22 @@ Use `docker-compose` to execute one or more SmartThings Node Proxy containers.
 
 Edit the `docker-compose.yml` file and update as necessary. Repeat the service block to run multiple containers, for instance for multiple STNP plugins (adjust the port mapping as appropriate!)
 
+## Install Docker on Raspian Jessie
+
+```
+echo "deb [arch=armhf] https://apt.dockerproject.org/repo raspbian-jessie main" \
+| sudo tee /etc/apt/sources.list.d/docker.list
+sudo apt-get install apt-transport-https
+sudo apt-get update
+sudo apt-get install docker-engine
+```
+
 ## Install Docker Compose
 
 On the Raspberry Pi running Raspian,
 
 ```
-sudo apt-get install python2.7 python-pip2.7
+sudo apt-get install python2.7 python-pip
 sudo pip install docker-compose
 ```
 
