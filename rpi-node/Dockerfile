@@ -3,12 +3,11 @@ FROM resin/rpi-raspbian:jessie
 LABEL org.label-schema.schema-version="1.0" \
       org.label-schema.name="rpi-node" \
       org.label-schema.description="Node.js for Raspberry Pi" \
-      org.label-schema.version="1.0.2" \
+      org.label-schema.version="6.10.1" \
       org.label-schema.docker.cmd="docker run -d rpi-node" \
       org.label-schema.build-date="2017-03-23" \
       com.tobyjennings.base-image="resin/rpi-raspbian:jessie" \
-      com.tobyjennings.architecture="arm6" \
-      com.tobyjennings.node.version="6.10.1" 
+      com.tobyjennings.architecture="arm6" 
 
 RUN apt-get update \
  && apt-get install wget \
@@ -21,4 +20,3 @@ ENV NODE=/usr/local/bin/node
 ENV NPM=/usr/local/bin/npm
 
 ENTRYPOINT ["/usr/local/bin/node"]
-CMD ["--interactive"]

@@ -5,7 +5,7 @@ LABEL org.label-schema.schema-version="1.0" \
       org.label-schema.description="SmartThings Node Proxy for Raspberry Pi" \
       org.label-schema.version="1.0.2" \
       org.label-schema.docker.cmd="docker run -d -p 8080:8080 -e ENABLED_PLUGINS='' --device=/dev/ttyUSB0 rpi-smartthings-nodeproxy" \
-      org.label-schema.build-date="2017-03-23"
+      org.label-schema.build-date="2017-03-30"
 
 ENV PYTHON=/usr/bin/python2.7
 
