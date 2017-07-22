@@ -1,18 +1,20 @@
 FROM resin/rpi-raspbian:jessie
 
+ENV INFLUXDB_VERSION=1.3.1
+
 LABEL org.label-schema.schema-version="1.0" \
       org.label-schema.name="rpi-influxdb" \
       org.label-schema.description="InfluxDB for CollectD metrics with types.db" \
-      org.label-schema.version="1.0.2" \
+      org.label-schema.version="1.3.1" \
       org.label-schema.docker.cmd="docker run -d -p 8083:8083 -p 8086:8086 -p 25826:25826/udp rpi-influxdb" \
-      org.label-schema.build-date="2016-10-23" \
+      org.label-schema.build-date="2017-07-22" \
       com.tobyjennings.base-image="resin/rpi-raspbian:jessie" \
       com.tobyjennings.architecture="arm6hf" 
 
 RUN apt-get update \
  && apt-get install wget \
  && apt-get clean \
- && wget -O - https://dl.influxdata.com/influxdb/releases/influxdb-1.0.2_linux_armhf.tar.gz \
+ && wget -O - https://dl.influxdata.com/influxdb/releases/influxdb-${INFLUXDB_VERSION}_linux_armhf.tar.gz \
   | tar -xvzf - --strip-components=2 -C / \
  && mkdir -p /var/lib/influxdb/wal \
  && mkdir -p /var/lib/influxdb/data \
