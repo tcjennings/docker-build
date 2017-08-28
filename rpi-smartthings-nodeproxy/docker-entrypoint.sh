@@ -8,4 +8,5 @@ for plugin in "$ENABLED_PLUGINS"; do
  fi
 done
 
-$NODE ./server.js
+#$NODE ./server.js
+npm run start
