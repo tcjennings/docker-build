@@ -1,13 +1,13 @@
 FROM resin/rpi-raspbian:jessie
 
-ENV INFLUXDB_VERSION=1.3.1
+ENV INFLUXDB_VERSION=1.4.2
 
 LABEL org.label-schema.schema-version="1.0" \
       org.label-schema.name="rpi-influxdb" \
       org.label-schema.description="InfluxDB for CollectD metrics with types.db" \
-      org.label-schema.version="1.3.1" \
+      org.label-schema.version="1.4.2" \
       org.label-schema.docker.cmd="docker run -d -p 8083:8083 -p 8086:8086 -p 25826:25826/udp rpi-influxdb" \
-      org.label-schema.build-date="2017-07-22" \
+      org.label-schema.build-date="2018-01-20" \
       com.tobyjennings.base-image="resin/rpi-raspbian:jessie" \
       com.tobyjennings.architecture="arm6hf" 
 
