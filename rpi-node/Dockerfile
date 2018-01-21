@@ -1,7 +1,7 @@
 FROM resin/rpi-raspbian:jessie
 
 ARG architecture=armv6
-ARG node_version=6.11.1
+ARG node_version=8.9.4
 ARG build_date
 
 LABEL org.label-schema.schema-version="1.0" \
