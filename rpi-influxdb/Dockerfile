@@ -6,7 +6,7 @@ LABEL org.label-schema.schema-version="1.0" \
       org.label-schema.name="rpi-influxdb" \
       org.label-schema.description="InfluxDB for CollectD metrics with types.db" \
       org.label-schema.version="1.4.2" \
-      org.label-schema.docker.cmd="docker run -d -p 8083:8083 -p 8086:8086 -p 25826:25826/udp rpi-influxdb" \
+      org.label-schema.docker.cmd="docker run -d -p 8086:8086 -p 25826:25826/udp rpi-influxdb" \
       org.label-schema.build-date="2018-01-20" \
       com.tobyjennings.base-image="resin/rpi-raspbian:jessie" \
       com.tobyjennings.architecture="arm6hf" 
@@ -28,7 +28,7 @@ COPY types.db /usr/share/collectd/types.db
 
 ENV INFLUXDB_CONFIG_PATH /etc/influxdb/influxdb.conf
 
-EXPOSE 8083 8086 25826/udp
+EXPOSE 8086 25826/udp
 
 VOLUME /var/lib/influxdb
 
