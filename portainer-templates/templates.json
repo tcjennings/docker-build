@@ -1,0 +1,29 @@
+[
+ {
+  "type": "container",
+  "title": "Grafana",
+  "description": "Grafana",
+  "categories": ["raspberrypi","arm","monitoring"],
+  "platform":"linux",
+  "logo": "https://pbs.twimg.com/profile_images/883408726903971840/CoLX7WyW.jpg",
+  "image": "tcjennings/rpi-grafana:latest",
+  "ports": [
+    "3000/tcp"
+  ],
+  "volumes": ["/var/lib/grafana","/var/log/grafana"]
+ },
+ {
+  "type": "container",
+  "title": "Open Lighting Architecture",
+  "description": "Open Lighting Architecture build for linux-arm7 raspberry pi operation.",
+  "categories": ["lighting","raspberrypi","arm"],
+  "platform": "linux",
+  "logo": "https://www.openlighting.org/wp-content/uploads/2014/01/OLA-Logo-Fitted-48px.png",
+  "image": "tcjennings/rpi-openlighting:latest",
+  "ports": [
+    "9090/tcp", "9010/tcp"
+  ],
+  "volumes": ["/etc/olad"]
+ }
+
+]
