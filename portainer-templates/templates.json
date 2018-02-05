@@ -33,7 +33,7 @@
    "platform": "linux",
    "repository": {
       "url": "https://github.com/tcjennings/docker-build",
-      "stackfile": "stacks/network/docker-stack.yml"
+      "stackfile": "stacks/home_network/docker-stack.yml"
    },
    "env": [
     { "name": "STACK_ROOT", "label": "Stack root dir", "description": "Path to root directory of stack bind directories."}
