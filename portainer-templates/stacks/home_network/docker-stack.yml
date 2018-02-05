@@ -1,0 +1,69 @@
+version: '3.4'
+networks:
+   default:
+      external:
+         name: piswarm
+services:
+  influxdb:
+    image: "tcjennings/rpi-influxdb:latest"
+    ports:
+      - "8086:8086"
+    volumes:
+      - ${STACK_ROOT}/influxdb:/var/lib/influxdb
+#    env_file: ./influxdb-collectd.env    
+    deploy:
+       replicas: 0
+  telegraf:
+    image: "tcjennings/rpi-telegraf:latest"
+    volumes:
+      - ${STACK_ROOT}/telegraf.conf.d:/etc/telegraf/telegraf.conf.d
+      - ${STACK_ROOT}/telegraf.mibs:/opt/extra-mibs
+    deploy:
+       replicas: 0
+  collectd:
+    image: "tcjennings/rpi-collectd-snmp"
+    volumes:
+      - ${STACK_ROOT}/collectd.conf.d:/etc/collectd/collectd.conf.d
+    deploy:
+       replicas: 0
+  grafana:
+    image: "tcjennings/rpi-grafana:latest"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ${STACK_ROOT}/grafana:/var/lib/grafana
+    deploy:
+       replicas: 0
+  unifi:
+    image: ryansch/unifi-rpi:latest
+    ports:
+      #HTTPS controller GUI
+      - target: 8443
+        published: 8443
+        protocol: tcp
+        mode: host
+      #UAP -> Controller
+      - target: 8080
+        published: 8080
+        protocol: tcp
+        mode: host
+      #STUN port
+      - target: 3478
+        published: 3478
+        protocol: udp
+        mode: host
+      #AP Discovery
+      - target: 10001
+        published: 10001
+        protocol: udp
+        mode: host
+    volumes:
+      # Unifi v5.0.7 creates all of these directories (some remain empty)
+      - ${STACK_ROOT}/unifi/config:/var/lib/unifi
+      - ${STACK_ROOT}/unifi/log:/usr/lib/unifi/logs
+      - ${STACK_ROOT}/unifi/log2:/var/log/unifi
+      - ${STACK_ROOT}/unifi/run:/usr/lib/unifi/run
+      - ${STACK_ROOT}/unifi/run2:/run/unifi
+      - ${STACK_ROOT}/unifi/work:/usr/lib/unifi/work
+    deploy:
+       replicas: 0
