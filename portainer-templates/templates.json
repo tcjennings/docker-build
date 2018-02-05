@@ -24,6 +24,19 @@
     "9090/tcp", "9010/tcp"
   ],
   "volumes": ["/etc/olad"]
- }
-
+ },
+ {
+   "type":"stack",
+   "title": "Network Services",
+   "description": "Stack of network services including influxdb, telegraf, grafana, Unifi, etc.",
+   "categories": ["home","network","monitoring","management"],
+   "platform": "linux",
+   "repository": {
+      "url": "https://github.com/tcjennings/docker-build",
+      "stackfile": "stacks/network/docker-stack.yml"
+   },
+   "env": [
+    { "name": "STACK_ROOT", "label": "Stack root dir", "description": "Path to root directory of stack bind directories."}
+    ]
+  }
 ]
