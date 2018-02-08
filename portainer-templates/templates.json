@@ -1,6 +1,16 @@
 [
  {
   "type": "container",
+  "title": "Unifi",
+  "description": "Ubiquiti Unifi Manager",
+  "categories": ["raspberrypi","arm","network"],
+  "platform":"linux",
+  "image": "ryansch/unifi-rpi:latest",
+  "ports": [ "8443/tcp", "8080/tcp", "3478/udp", "10001/udp" ],
+  "volumes": [ "/var/lib/unifi","/usr/lib/unifi/logs","/var/log/unifi","/usr/lib/unifi/run","/run/unifi","/usr/lib/unifi/work"]
+ },
+ {
+  "type": "container",
   "title": "Grafana",
   "description": "Grafana",
   "categories": ["raspberrypi","arm","monitoring"],
