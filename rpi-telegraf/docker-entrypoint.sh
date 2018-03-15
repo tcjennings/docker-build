@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [[ ! -d /etc/telegraf/telegraf.conf.d ]]; then
+mkdir -p /etc/telegraf/telegraf.conf.d
+fi
+
 #Create empty default config
 telegraf --input-filter : --output-filter : config | grep -v "#" | uniq > /etc/telegraf/telegraf.conf
 
@@ -16,6 +20,10 @@ cat << EOF > /etc/telegraf/telegraf.conf.d/input-cpu.conf
   collect_cpu_time = false
   report_active = false
 EOF
+fi
+
+if [[ -n "$HOSTNAME_COMMAND" && -z "$TELEGRAF_AGENT_HOSTNAME" ]]; then
+  export TELEGRAF_AGENT_HOSTNAME = $(eval $HOSTNAME_COMMAND)
 fi
 
 export TELEGRAF_AGENT_INTERVAL=${TELEGRAF_AGENT_INTERVAL-10s}
@@ -37,10 +45,11 @@ do
  if [[ $VAR =~ ^TELEGRAF_AGENT_ ]]; then
   tg_name=`echo "$VAR" | sed -r "s/TELEGRAF_AGENT_(.*)=.*\1/g" | tr '[:upper:]' '[:lower:]'`
   env_var=`echo "$VAR" | sed -r "s/TELEGRAF_AGENT_(.*)=.*\1/g"`
-  if egrep -q  "(^|^#)$tg_name=" /etc/telegraf/telegraf.conf; then
-   sed -r -i "s@(^|^#)($tg_name)=(.*)@\2=${!env_var}@g" /etc/telegraf/telegraf.conf
+ egrep -w "[\s#]*hostname\s*=\s*" ./telegraf.conf.default
+  if egrep -wq  "(^|\s|#)tg_name\s*=\s*" /etc/telegraf/telegraf.conf; then
+   sed -r -i "s@(^|\s|^#)($tg_name)\s*=\s*(.*)@\2=${!env_var}@g" /etc/telegraf/telegraf.conf
   else
-   echo "$tg_name=${!env_var}" >> /etc/telegraf/telegraf.conf
+   echo "$tg_name = ${!env_var}" >> /etc/telegraf/telegraf.conf
   fi
  fi
 done
